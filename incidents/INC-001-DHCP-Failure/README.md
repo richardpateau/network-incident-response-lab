@@ -120,11 +120,19 @@ After remediation:
 
 ![Successful DORA](evidence/screenshots/08-wireshark-successful-dora.png)
 
+**Offer PCAP:**
+
 ![Offer Packet](evidence/screenshots/08a-wireshark-offer-packet-details.png)
+
+**Request PCAP:**
 
 ![Request Packet](evidence/screenshots/08b-wireshark-request-packet-details.png)
 
+**ACK PCAP:**
+
 ![ACK Packet](evidence/screenshots/08c-wireshark-ack-packet-details.png)
+
+**Post Remediation DHCP Binding:**
 
 ![DHCP Binding After](evidence/screenshots/10-post-remediation-show-ip-dhcp-binding.png)
 
