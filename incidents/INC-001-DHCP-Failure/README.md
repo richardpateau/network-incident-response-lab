@@ -120,17 +120,17 @@ After remediation:
 
 ![Successful DORA](evidence/screenshots/08-wireshark-successful-dora.png)
 
-![Offer Packet](evidence/screenshots/08a-offer-packet-details.png)
+![Offer Packet](evidence/screenshots/08a-wireshark-offer-packet-details.png)
 
-![Request Packet](evidence/screenshots/08b-request-packet-details.png)
+![Request Packet](evidence/screenshots/08b-wireshark-request-packet-details.png)
 
-![ACK Packet](evidence/screenshots/08c-ack-packet-details.png)
+![ACK Packet](evidence/screenshots/08c-wireshark-ack-packet-details.png)
 
-![DHCP Binding After](evidence/screenshots/11-show-ip-dhcp-binding-after.png)
+![DHCP Binding After](evidence/screenshots/10-post-remediation-show-ip-dhcp-binding.png)
 
 **ServiceNow Ticket (Resolved):**
 
-![ServiceNow Resolved](evidence/screenshots/01-service-now-resolved.png)
+![ServiceNow Resolved](evidence/screenshots/11-service-now-resolved.png)
 
 ---
 
