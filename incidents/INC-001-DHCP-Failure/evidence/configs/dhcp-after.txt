@@ -1,0 +1,5 @@
+DHCP configuration AFTER remediation:
+
+ip dhcp pool LAN
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1
