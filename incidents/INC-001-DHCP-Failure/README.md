@@ -114,3 +114,33 @@ ip dhcp pool LAN
  network 10.10.10.0 255.255.255.0
  default-router 10.10.10.1
 ```
+## Verification
+
+After remediation:
+
+- PC1 successfully received a `10.10.10.x` address
+- Full DORA process was observed in Wireshark
+- Connectivity to the gateway and other clients was restored
+- DHCP binding appeared on R1
+
+![Successful DORA](evidence/screenshots/08-wireshark-successful-dora.png)
+
+![Offer Packet](evidence/screenshots/08a-offer-packet-details.png)
+
+![Request Packet](evidence/screenshots/08b-request-packet-details.png)
+
+![ACK Packet](evidence/screenshots/08c-ack-packet-details.png)
+
+![DHCP Binding After](evidence/screenshots/11-show-ip-dhcp-binding-after.png)
+
+**ServiceNow Ticket (Resolved):**
+
+![ServiceNow Resolved](evidence/screenshots/01-service-now-resolved.png)
+
+---
+
+## Lessons Learned
+
+- Always verify that the DHCP pool network matches the interface subnet
+- Packet captures are highly effective for identifying where the DORA process fails
+- Monitoring tools may not always generate alerts for configuration issues — CLI and packet analysis remain essential
