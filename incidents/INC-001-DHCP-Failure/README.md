@@ -1,8 +1,3 @@
-
-# Project Title
-
-A brief description of what this project does and who it's for
-
 # INC-001 — Clients Cannot Obtain an IP Address
 
 **Status:** Resolved  
@@ -141,6 +136,6 @@ After remediation:
 
 ## Lessons Learned
 
-- Always verify that the DHCP pool network matches the interface subnet
-- Packet captures are highly effective for identifying where the DORA process fails
-- Monitoring tools may not always generate alerts for configuration issues — CLI and packet analysis remain essential
+- Alway verify that the DHCP network matches the interface subnet providing the IP addresses.
+- Packet Captures are useful for diagnosing DHCP related issues specifically inspecting DORA packets. 
+- SNMP and SIEM platforms are not the best for troubleshooting a DHCP related issue such as a misconfiguration as they provide barely any alerts or logs. CLI and wireshark are sufficient. 
