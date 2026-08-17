@@ -17,7 +17,7 @@
 
 ## Topology
 
-![Topology](topology/topology.png)
+![Topology](topology/topology_draw_io.png)
 
 ---
 
