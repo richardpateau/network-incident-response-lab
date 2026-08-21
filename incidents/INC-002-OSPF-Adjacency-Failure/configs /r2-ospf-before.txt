@@ -1,0 +1,4 @@
+router ospf 1
+ router-id 2.2.2.2
+ network 10.10.20.0 0.0.0.3 area 1
+ network 10.20.20.0 0.0.0.255 area 0
