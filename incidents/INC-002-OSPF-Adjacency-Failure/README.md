@@ -10,7 +10,7 @@
 
 ## ServiceNow Ticket
 
-![ServiceNow Ticket](evidence/screenshots/01-service-now-tickted.png)
+![ServiceNow Ticket](evidence/screenshots/01-service-now-ticked.png)
 
 **Short Description:** Users unable to reach remote network (`10.20.20.0/24`)
 
@@ -46,6 +46,8 @@
 
 Splunk flagged the missing OSPF adjacency and the loss of the
 10.20.20.0/24 route.
+
+`%OSPF-4-ERRRCV: Received invalid packet: mismatched area ID from backbone area from 10.10.20.1, GigabitEthernet0/0`
 
 ![Splunk Alert](evidence/screenshots/09-splunk.png)
 
@@ -101,15 +103,15 @@ The route to `10.20.20.0/24` was missing on R1.
 
 **R1 (Area 0):**
 
-![R1 OSPF Config](evidence/screenshots/06-r1-show-running-config-ospf)
+![R1 OSPF Config](evidence/screenshots/06-r1-show-running-config-ospf.png)
 
 **R2 (incorrect — transit link in Area 1):**
 
-![R2 OSPF Config Broken](evidence/screenshots/06a-r2-show-running-config-ospf)
+![R2 OSPF Config Broken](evidence/screenshots/06a-r2-show-running-config-ospf.png)
 
 **R3:**
 
-![R3 OSPF Config](evidence/screenshots/06b-r3-show-running-config-ospf)
+![R3 OSPF Config](evidence/screenshots/06b-r3-show-running-config-ospf.png)
 
 ### 5. Packet Capture
 
@@ -121,8 +123,8 @@ OSPF Hello packets were exchanged, but the adjacency did not progress to FULL be
 
 ## Configs
 
-- Before: [`r1-ospf-before.txt`](evidence/configs/r1-ospf-before.txt) · [`r2-ospf-before.txt`](evidence/configs/r2-ospf-before.txt) · [`r3-ospf-before.txt`](evidence/configs/r3-ospf-before.txt)
-- After: [`r1-ospf-after.txt`](evidence/configs/r1-ospf-after.txt) · [`r2-ospf-after.txt`](evidence/configs/r2-ospf-after.txt) · [`r3-ospf-after.txt`](evidence/configs/r3-ospf-after.txt)
+- Before: [`r1-ospf-before.txt`](configs/r1-ospf-before.txt) · [`r2-ospf-before.txt`](configs/r2-ospf-before.txt) · [`r3-ospf-before.txt`](configs/r3-ospf-before.txt)
+- After: [`r1-ospf-after.txt`](configs/r1-ospf-after.txt) · [`r2-ospf-after.txt`](configs/r2-ospf-after.txt) · [`r3-ospf-after.txt`](configs/r3-ospf-after.txt)
 
 ### 6. Monitoring
 
@@ -162,32 +164,47 @@ After remediation:
 - The `10.20.20.0/24` route appeared in R1’s OSPF table
 - PC1 and R1 could successfully reach `10.20.20.1`
 
+**R1 show ip ospf neighbor:**
 ![R1 Neighbor Fixed](evidence/screenshots/11-r1-show-ip-ospf-neighbor-fixed.png)
 
+**R2 show ip ospf neighbor:**
 ![R2 Neighbor Fixed](evidence/screenshots/11a-r2-show-ip-ospf-neighbor-fixed.png)
 
+**R1 show ip route:**
 ![R1 OSPF Route Fixed](evidence/screenshots/12-r1-show-ip-route-ospf-fixed.png)
 
+**R1 show ip route:**
 ![R1 Routing Table Fixed](evidence/screenshots/13-r1-show-ip-route-fixed.png)
 
+**Post Remediation Wireshark:**
 ![Wireshark Post Remediation](evidence/screenshots/14-wireshark-post-remediation.png)
 
+**Hello Packet Details:**
 ![Hello Details](evidence/screenshots/14a-wireshark-hello-details.png)
 
+**DBD Packet Details:**
 ![DBD Details](evidence/screenshots/14b-wireshark-dbd-details.png)
 
+**LSR Packet Details:**
 ![LSR Details](evidence/screenshots/14c-wireshark-lsr-details.png)
 
+**LSU Packet Details:**
 ![LSU Details](evidence/screenshots/14d-wireshark-lsu-details.png)
 
+**LSAck Packet Details:**
 ![LSAck Details](evidence/screenshots/14e-wireshark-ls-ack-details.png)
 
+`%OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet0/0 from LOADING to FULL, Loading Done`
+`%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done`
 ![Splunk After](evidence/screenshots/15-splunk-after-remediation.png)
 
+**PC1 Successful Ping:**
 ![PC Ping After](evidence/screenshots/16a-pc-ping-after-remediation.png)
 
+**R1 Successful Ping:**
 ![R1 Ping After](evidence/screenshots/16-r1-post-ping-after-remediation.png)
 
+**Resolved Service Now Ticket:**
 ![ServiceNow Resolved](evidence/screenshots/17-service-now-resolved.png)
 
 ---
