@@ -165,46 +165,61 @@ After remediation:
 - PC1 and R1 could successfully reach `10.20.20.1`
 
 **R1 show ip ospf neighbor:**
+
 ![R1 Neighbor Fixed](evidence/screenshots/11-r1-show-ip-ospf-neighbor-fixed.png)
 
 **R2 show ip ospf neighbor:**
+
 ![R2 Neighbor Fixed](evidence/screenshots/11a-r2-show-ip-ospf-neighbor-fixed.png)
 
 **R1 show ip route:**
+
 ![R1 OSPF Route Fixed](evidence/screenshots/12-r1-show-ip-route-ospf-fixed.png)
 
 **R1 show ip route:**
+
 ![R1 Routing Table Fixed](evidence/screenshots/13-r1-show-ip-route-fixed.png)
 
 **Post Remediation Wireshark:**
+
 ![Wireshark Post Remediation](evidence/screenshots/14-wireshark-post-remediation.png)
 
 **Hello Packet Details:**
+
 ![Hello Details](evidence/screenshots/14a-wireshark-hello-details.png)
 
 **DBD Packet Details:**
+
 ![DBD Details](evidence/screenshots/14b-wireshark-dbd-details.png)
 
 **LSR Packet Details:**
+
 ![LSR Details](evidence/screenshots/14c-wireshark-lsr-details.png)
 
 **LSU Packet Details:**
+
 ![LSU Details](evidence/screenshots/14d-wireshark-lsu-details.png)
 
 **LSAck Packet Details:**
+
 ![LSAck Details](evidence/screenshots/14e-wireshark-ls-ack-details.png)
 
-`%OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet0/0 from LOADING to FULL, Loading Done`
-`%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done`
+** `%OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet0/0 from LOADING to FULL, Loading Done`**
+
+** `%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done` ** 
+
 ![Splunk After](evidence/screenshots/15-splunk-after-remediation.png)
 
 **PC1 Successful Ping:**
+
 ![PC Ping After](evidence/screenshots/16a-pc-ping-after-remediation.png)
 
 **R1 Successful Ping:**
+
 ![R1 Ping After](evidence/screenshots/16-r1-post-ping-after-remediation.png)
 
 **Resolved Service Now Ticket:**
+
 ![ServiceNow Resolved](evidence/screenshots/17-service-now-resolved.png)
 
 ---
