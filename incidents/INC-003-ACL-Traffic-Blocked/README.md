@@ -38,6 +38,8 @@ After change CHG-0231 ("Block insecure Telnet access from LAN to APP-SERVER01"),
  
 The ticket originated from user reports, but once opened, ACL deny
 events were already visible in Splunk.
+
+`%SEC-6-IPACCESSLOGP: list PROTECT-SERVER denied tcp 10.10.10.10(39247) -> 10.20.20.10(443), 1 packet `
  
 ![Splunk ACL Log](evidence/screenshots/05-splunk-acl-log.png)
 
@@ -69,7 +71,11 @@ Both deny statements were matching traffic, inidicating that more than one rule 
 
 ![ICMP Overview](evidence/screenshots/06-wireshark-icmp-overview.png)
 
+**ICMP echo request details**
+
 ![ICMP Echo Request](evidence/screenshots/06a-wireshark-icmp-echo-request.png)
+
+**ICMP destination unreachable packet**
 
 ![ICMP Destination Unreachable](evidence/screenshots/06b-wireshark-icmp-dest-unreachable.png)
 
@@ -77,19 +83,20 @@ Both deny statements were matching traffic, inidicating that more than one rule 
 
 ![HTTPS SYN](evidence/screenshots/07-wireshark-https-syn.png)
 
-**tcpdump:**
+**tcpdump ICMP:**
 
 ![tcpdump ICMP](evidence/screenshots/08-tcpdump-icmp.png)
 
+**tcpdump HTTPS:**
 ![tcpdump HTTPS](evidence/screenshots/09-tcpdump-https.png)
 
 ---
 
 ## Configs
  
-- Before: [`r1-acl-before.txt`](evidence/configs/r1-acl-before.txt)
-- After Stage 1: [`r1-acl-after-fix1.txt`](evidence/configs/r1-acl-after-fix1.txt)
-- After Stage 2 (final): [`r1-acl-after-fix2.txt`](evidence/configs/r1-acl-after-fix2.txt)
+- Before: [`r1-acl-before.txt`](configs/r1-acl-before.txt)
+- After Stage 1: [`r1-acl-after-fix1.txt`](/r1-acl-after-fix1.txt)
+- After Stage 2 (final): [`r1-acl-after-fix2.txt`](configs/r1-acl-after-fix2.txt)
 
 ---
 
@@ -99,7 +106,7 @@ The ACL deployed by CHG-0231 contained two problems:
 
 1. **Rule blocking all protocols**  
    `deny ip 10.10.10.0 0.0.0.255 host 10.20.20.10`  
-   blocked *all* traffic from the LAN to the server, not just Telnet.
+   blocked **all** traffic from the LAN to the server, not just Telnet.
 
 2. **Stale leftover rule**  
    `deny tcp any host 10.20.20.10 eq 443`  
@@ -135,9 +142,7 @@ ip access-list extended PROTECT-SERVER
 ip access-list extended PROTECT-SERVER
  no deny tcp any host 10.20.20.10 eq 443
 
-![ACL Fix 2](evidence/screenshots/13-r1-acl-fix2-applied.png)
-
-**Final ACL:**
+Final ACL:
 
 ```cisco
 ip access-list extended PROTECT-SERVER
@@ -152,33 +157,35 @@ After Stage 2:
 - Telnet remained blocked (intended behavior)
 - ICMP continued to work
 
-**PC1 HTTPS connection successful**
+**PC1 HTTPS connection successful:**
 
 ![HTTPS Success](evidence/screenshots/14-pc1-https-success.png)
 
-**Telnet still blocked from PC1**
+**Telnet still blocked from PC1:**
 
 ![Telnet Still Blocked](evidence/screenshots/15-pc1-telnet-blocked-successful.png)
 
 **Working packet captures:**
 
-**Both ICMP request and replies present**
+**Both ICMP request and replies present:**
 
 ![ICMP Echo Reply](evidence/screenshots/16-wireshark-icmp-echo-reply.png)
 
-**ICMP reply details**
+**ICMP reply details:**
 
 ![ICMP Reply Details](evidence/screenshots/16a-wireshark-reply-details.png)
 
-**Successful TCP handshake**
+**Successful TCP handshake:**
 
 ![HTTPS Handshake](evidence/screenshots/17-wireshark-https-full-handshake.png)
 
 **Splunk after fix:**
-
+`%SEC-6-IPACCESSLOGP: list PROTECT-SERVER denied tcp 10.10.10.10(36001) -> 10.20.20.10(23), 9 packets `
+ 
 ![Splunk After](evidence/screenshots/18-splunk-after.png)
 
 **ServiceNow resolved ticket**
+
 ![ServiceNow Resolved](evidence/screenshots/19-servicenow-resolved.png)
 
 ---
