@@ -79,7 +79,7 @@ Both deny statements were matching traffic, inidicating that more than one rule 
 
 ![ICMP Destination Unreachable](evidence/screenshots/06b-wireshark-icmp-dest-unreachable.png)
 
-**HTTPS:**
+**HTTPS SYN details:**
 
 ![HTTPS SYN](evidence/screenshots/07-wireshark-https-syn.png)
 
@@ -88,15 +88,22 @@ Both deny statements were matching traffic, inidicating that more than one rule 
 ![tcpdump ICMP](evidence/screenshots/08-tcpdump-icmp.png)
 
 **tcpdump HTTPS:**
+
 ![tcpdump HTTPS](evidence/screenshots/09-tcpdump-https.png)
 
 ---
 
 ## Configs
  
-- Before: [`r1-acl-before.txt`](configs/r1-acl-before.txt)
-- After Stage 1: [`r1-acl-after-fix1.txt`](/r1-acl-after-fix1.txt)
-- After Stage 2 (final): [`r1-acl-after-fix2.txt`](configs/r1-acl-after-fix2.txt)
+- Before: [`r1-acl-before.txt`](evidence/configs/r1-acl-before.txt)
+	```
+	ip access-list extended PROTECT-SERVER
+ 	deny tcp any host 10.20.20.10 eq 443 log
+ 	deny ip 10.10.10.0 0.0.0.255 host 10.20.20.10 log
+ 	permit ip any any3
+	```
+- After Stage 1: [`r1-acl-after-fix1.txt`](evidence/configs/r1-acl-after-fix1.txt)
+- After Stage 2 (final): [`r1-acl-after-fix2.txt`](evidence/configs/r1-acl-after-fix2.txt)
 
 ---
 

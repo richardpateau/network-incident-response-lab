@@ -1,0 +1,4 @@
+ip access-list extended PROTECT-SERVER
+ deny tcp any host 10.20.20.10 eq 443 log
+ deny ip 10.10.10.0 0.0.0.255 host 10.20.20.10 log
+ permit ip any any
