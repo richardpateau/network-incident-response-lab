@@ -10,7 +10,7 @@
 
 ## ServiceNow Ticket
 
-![ServiceNow Ticket](evidence/screenshots/01-service-now-ticked.png)
+![ServiceNow Ticket](evidence/screenshots/01-service-now-ticket.png)
 
 **Short Description:** Users unable to reach remote network (`10.20.20.0/24`)
 
