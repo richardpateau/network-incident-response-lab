@@ -96,15 +96,28 @@ Both deny statements were matching traffic, inidicating that more than one rule 
 ## Configs
  
 - Before: [`r1-acl-before.txt`](evidence/configs/r1-acl-before.txt)
+	
 	```
 	ip access-list extended PROTECT-SERVER
- 	deny tcp any host 10.20.20.10 eq 443 log
- 	deny ip 10.10.10.0 0.0.0.255 host 10.20.20.10 log
- 	permit ip any any3
+ 	 deny tcp any host 10.20.20.10 eq 443 log
+ 	 deny ip 10.10.10.0 0.0.0.255 host 10.20.20.10 log
+ 	 permit ip any any
 	```
 - After Stage 1: [`r1-acl-after-fix1.txt`](evidence/configs/r1-acl-after-fix1.txt)
+	
+	```
+	ip access-list extended PROTECT-SERVER
+     deny tcp any host 10.20.20.10 eq 443
+     deny tcp 10.10.10.0 0.0.0.255 host 10.20.20.10 eq 23
+     permit ip any any
+	```
 - After Stage 2 (final): [`r1-acl-after-fix2.txt`](evidence/configs/r1-acl-after-fix2.txt)
-
+	
+	```
+	ip access-list extended PROTECT-SERVER
+ 	 deny tcp 10.10.10.0 0.0.0.255 host 10.20.20.10 eq 23
+ 	 permit ip any any
+	```
 ---
 
 ## Root Cause
