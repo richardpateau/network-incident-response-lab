@@ -208,7 +208,7 @@ After remediation:
 - PC1 could reach the application server
 - Wireshark showed LSR / LSU / LSAck progression
 
-**R1: show ip ospf neighbor **
+**R1: show ip ospf neighbor**
 
 ![R1 Neighbor FULL](evidence/screenshots/22-r1-ospf-neighbor-full.png)
 
@@ -216,14 +216,17 @@ After remediation:
 
 ![R2 Neighbor FULL](evidence/screenshots/23-r2-ospf-neighbor-full.png)
 
-
+**R1: show ip route ospf**
 ![R1 OSPF Route Fixed](evidence/screenshots/24-r1-route-ospf-fixed.png)
 
+**R2: show ip route ospf**
 ![R2 OSPF Route Fixed](evidence/screenshots/25-r2-route-ospf-fixed.png)
+
+**R1: show interfaces g0/3 | include MTU**
 
 ![R1 MTU Fixed](evidence/screenshots/26-r1-interface-mtu-fixed.png)
 
-**PC1 successful ping post-remediation **
+**PC1 successful ping post-remediation**
 
 ![PC1 Ping Success](evidence/screenshots/27-pc1-ping-success.png)
 
@@ -232,6 +235,10 @@ After remediation:
 ![Wireshark Post](evidence/screenshots/28-wireshark-post-lsr-lsu-lsack.png)
 
 **Splunk dashboard post-remediation**
+
+` %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done`
+ 
+`%OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet0/0 from EXSTART to DOWN, Neighbor Down: Too many retransmissions`
 
 ![Splunk After](evidence/screenshots/29-splunk-after.png)
 
