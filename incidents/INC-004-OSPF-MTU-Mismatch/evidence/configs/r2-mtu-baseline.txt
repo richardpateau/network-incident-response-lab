@@ -1,0 +1,10 @@
+interface GigabitEthernet0/2
+ description TO-R1
+ ip address 10.10.20.2 255.255.255.252
+ mtu 1500
+ no shutdown
+
+router ospf 1
+ router-id 2.2.2.2
+ network 10.10.20.0 0.0.0.3 area 0
+ network 10.20.20.0 0.0.0.255 area 0
