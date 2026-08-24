@@ -25,7 +25,7 @@ Interfaces were up/up, but the OSPF neighbor relationship did not reach FULL.
 
 ## Topology
 
-![Topology](topology/topology.png)
+![Topology](topology/topology_draw_io.png)
 
 ---
 
@@ -39,7 +39,10 @@ Interfaces were up/up, but the OSPF neighbor relationship did not reach FULL.
 ---
 
 ## Detection
+`%OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet0/3 from EXSTART to DOWN, Neighbor Down: Too many retransmissions`
  
+`%OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet0/0 from EXSTART to DOWN, Neighbor Down: Too many retransmissions`
+
  ![Splunk Before](evidence/screenshots/20-splunk-before.png)
 
 ## Initial Symptoms
@@ -100,17 +103,31 @@ Debug confirmed adjacency problems during DBD exchange.
 
 ### 7. Packet Capture
 
+**tcpdump saved to file:**
+
 ![tcpdump](evidence/screenshots/14-tcpdump.png)
 
-![Wireshark Overview](evidence/screenshots/14a-wireshark-before-overview.png)
+**Wireshark overview:**
 
 ![No LSR/LSU/LSAck](evidence/screenshots/15-wireshark-no-lsr-lsu-lsack.png)
 
+**R1 hello details:**
+
 ![R1 Hello](evidence/screenshots/16-wireshark-r1-hello-details.png)
+
+**R2 hello details:**
 
 ![R2 Hello](evidence/screenshots/17-wireshark-r2-hello-details.png)
 
+** Wireshark filtered by DBD **
+
+![Wireshark Overview](evidence/screenshots/14a-wireshark-before-overview.png)
+
+**R1 DBD details:**
+
 ![R1 DBD](evidence/screenshots/18-wireshark-r1-dbd-details.png)
+
+**R2 DBD details:** 
 
 ![R2 DBD](evidence/screenshots/19-wireshark-r2-dbd-details.png)
 
@@ -130,8 +147,7 @@ router ospf 1
  router-id 1.1.1.1
  network 10.10.10.0 0.0.0.255 area 0
  network 10.10.20.0 0.0.0.3 area 0
-
-	```
+```
 · [`r2-mtu-baseline.txt`](evidence/configs/r2-mtu-baseline.txt)
 ```
 interface GigabitEthernet0/2
@@ -144,7 +160,7 @@ router ospf 1
  router-id 2.2.2.2
  network 10.10.20.0 0.0.0.3 area 0
  network 10.20.20.0 0.0.0.255 area 0
-	```
+```
 - After: [`r1-mtu-after-fix.txt`](evidence/configs/r1-mtu-after-fix.txt)
 ```
 interface GigabitEthernet0/3
@@ -192,11 +208,11 @@ After remediation:
 - PC1 could reach the application server
 - Wireshark showed LSR / LSU / LSAck progression
 
-** R1: show ip ospf neighbor **
+**R1: show ip ospf neighbor **
 
 ![R1 Neighbor FULL](evidence/screenshots/22-r1-ospf-neighbor-full.png)
 
-** R2: show ip ospf neighbor **
+**R2: show ip ospf neighbor**
 
 ![R2 Neighbor FULL](evidence/screenshots/23-r2-ospf-neighbor-full.png)
 
@@ -207,17 +223,20 @@ After remediation:
 
 ![R1 MTU Fixed](evidence/screenshots/26-r1-interface-mtu-fixed.png)
 
-** PC1 successful ping post-remediation **
+**PC1 successful ping post-remediation **
 
 ![PC1 Ping Success](evidence/screenshots/27-pc1-ping-success.png)
 
-** Wireshark overview post-remediation **
+**Wireshark overview post-remediation**
+
 ![Wireshark Post](evidence/screenshots/28-wireshark-post-lsr-lsu-lsack.png)
 
-** Splunk dashboard post-remediation **
+**Splunk dashboard post-remediation**
+
 ![Splunk After](evidence/screenshots/29-splunk-after.png)
 
 ** ServiceNow resolved **
+
 ![ServiceNow Resolved](evidence/screenshots/30-servicenow-resolved.png)
 
 ---
