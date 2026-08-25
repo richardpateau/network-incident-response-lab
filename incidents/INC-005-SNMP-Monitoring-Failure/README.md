@@ -107,6 +107,7 @@ The configured community was `NOC-R0` (zero) instead of the expected `NOC-RO` (l
 ![SNMP Debug](evidence/screenshots/12-r1-debug-snmp.png)
 
 **debug snmp detail**
+
 ![Relevant Debug Detail](evidence/screenshots/13-r1-debug-snmp-details-relevant.png)
 
 ### 5. Packet Capture
@@ -121,7 +122,7 @@ The configured community was `NOC-R0` (zero) instead of the expected `NOC-RO` (l
 
 **Wireshark filtered (source: `172.16.109.140`)**
 
-![No Response alternate view](evidence/screenshots/15s-wireshark-no-response-from-r1-172.16.109.140.png)
+![No Response alternate view](evidence/screenshots/15a-wireshark-no-response-from-r1-172.16.109.140.png)
 
 **Wireshark get-requests**
 
@@ -143,7 +144,8 @@ No useful SNMP authentication-failure logs were present in Splunk during the inc
 
 ```snmp-server community NOC-R0 RO
 snmp-server location "RCA Lab - Edge Router"
-snmp-server contact "Network Operations"```
+snmp-server contact "Network Operations"
+```
 
 - After: [`r1-snmp-fixed.txt`](evidence/configs/r1-snmp-fixed.txt)
 
@@ -175,6 +177,7 @@ snmp-server community NOC-RO RO
 ![SNMP Fix Applied](evidence/screenshots/18-r1-snmp-fix-applied.png)
 
 **Post-remediation: show run | section snmp**
+
 ![Fixed SNMP Config](evidence/screenshots/19-r1-show-run-snmp-fixed.png)
 
 ---
