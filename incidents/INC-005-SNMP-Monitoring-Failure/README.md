@@ -37,7 +37,7 @@ SolarWinds reported R1-EDGE as SNMP unreachable. The device still responded to I
 
 ## Detection
  
-- SolarWinds automatically flagged R1-EDGE as SNMP-unreachable when a
+- SolarWinds automatically flagged **R1-EDGE** as SNMP-unreachable when a
 scheduled poll failed 
 - The device, routing, and connectivity were all fully healthy; only the monitoring visibility
 into R1 was gone.
@@ -50,6 +50,12 @@ into R1 was gone.
 - SolarWinds showed R1 as down / SNMP failed
 - Monitoring dashboards were not updating for R1
 
+```Node status is Critical.
+SNMP polling is failing: 'Request timed out - Possible causes include network issues,
+incorrect community string or SNMPv3 credentials,
+or device not responding.'. One or more interfaces are in an Unknown state.
+One or more Interfaces have state: Unknown
+```
 ![Node Status Details](evidence/screenshots/03-solarwinds-node-status-details.png)
 
 ![SolarWinds Dashboard](evidence/screenshots/04-solarwinds-dashboard.png)
@@ -64,7 +70,7 @@ into R1 was gone.
 
 ![Ping R1 to SolarWinds](evidence/screenshots/05-ping-r1-to-solarwinds.png)
 
-**Windows was able to ping R1 (bidirectional communication verified)**
+**Windows Server was able to ping R1 (bidirectional communication verified)**
 
 ![Ping Windows to R1](evidence/screenshots/06-ping-windows-to-r1.png)
 
@@ -96,8 +102,11 @@ The configured community was `NOC-R0` (zero) instead of the expected `NOC-RO` (l
 
 ### 4. Debug Output
 
+**debug snmp packets**
+
 ![SNMP Debug](evidence/screenshots/12-r1-debug-snmp.png)
 
+**debug snmp detail**
 ![Relevant Debug Detail](evidence/screenshots/13-r1-debug-snmp-details-relevant.png)
 
 ### 5. Packet Capture
@@ -112,7 +121,7 @@ The configured community was `NOC-R0` (zero) instead of the expected `NOC-RO` (l
 
 **Wireshark filtered (source: `172.16.109.140`)**
 
-![No Response alternate view](evidence/screenshots/15-wireshark-no-response-from-r1-172.16.109.140.png)
+![No Response alternate view](evidence/screenshots/15s-wireshark-no-response-from-r1-172.16.109.140.png)
 
 **Wireshark get-requests**
 
@@ -132,16 +141,16 @@ No useful SNMP authentication-failure logs were present in Splunk during the inc
  
 - Before: [`r1-snmp-broken.txt`](evidence/configs/r1-snmp-broken.txt)
 
-`snmp-server community NOC-R0 RO
+```snmp-server community NOC-R0 RO
 snmp-server location "RCA Lab - Edge Router"
-snmp-server contact "Network Operations"`
+snmp-server contact "Network Operations"```
 
 - After: [`r1-snmp-fixed.txt`](evidence/configs/r1-snmp-fixed.txt)
 
-`snmp-server community NOC-RO RO
+```snmp-server community NOC-RO RO
 snmp-server location "RCA Lab - Edge Router"
 snmp-server contact "Network Operations"
-`
+```
 
 ## Root Cause
 
@@ -165,6 +174,7 @@ snmp-server community NOC-RO RO
 ```
 ![SNMP Fix Applied](evidence/screenshots/18-r1-snmp-fix-applied.png)
 
+**Post-remediation: show run | section snmp**
 ![Fixed SNMP Config](evidence/screenshots/19-r1-show-run-snmp-fixed.png)
 
 ---
