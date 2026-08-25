@@ -1,0 +1,3 @@
+snmp-server community NOC-RO RO
+snmp-server location "RCA Lab - Edge Router"
+snmp-server contact "Network Operations"

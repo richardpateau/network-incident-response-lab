@@ -103,31 +103,31 @@ Debug confirmed adjacency problems during DBD exchange.
 
 ### 7. Packet Capture
 
-**tcpdump saved to file:**
+**tcpdump saved to file**
 
 ![tcpdump](evidence/screenshots/14-tcpdump.png)
 
-**Wireshark overview:**
+**Wireshark overview**
 
 ![No LSR/LSU/LSAck](evidence/screenshots/15-wireshark-no-lsr-lsu-lsack.png)
 
-**R1 hello details:**
+**R1 hello details**
 
 ![R1 Hello](evidence/screenshots/16-wireshark-r1-hello-details.png)
 
-**R2 hello details:**
+**R2 hello details**
 
 ![R2 Hello](evidence/screenshots/17-wireshark-r2-hello-details.png)
 
-** Wireshark filtered by DBD **
+**Wireshark filtered by DBD**
 
 ![Wireshark Overview](evidence/screenshots/14a-wireshark-before-overview.png)
 
-**R1 DBD details:**
+**R1 DBD details**
 
 ![R1 DBD](evidence/screenshots/18-wireshark-r1-dbd-details.png)
 
-**R2 DBD details:** 
+**R2 DBD details** 
 
 ![R2 DBD](evidence/screenshots/19-wireshark-r2-dbd-details.png)
 
@@ -242,7 +242,7 @@ After remediation:
 
 ![Splunk After](evidence/screenshots/29-splunk-after.png)
 
-** ServiceNow resolved **
+**ServiceNow resolved**
 
 ![ServiceNow Resolved](evidence/screenshots/30-servicenow-resolved.png)
 

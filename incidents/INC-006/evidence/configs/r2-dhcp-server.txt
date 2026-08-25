@@ -1,0 +1,11 @@
+ip dhcp excluded-address 10.10.10.1 10.10.10.20
+
+ip dhcp pool PC1-LAN
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1
+ dns-server 8.8.8.8
+
+interface GigabitEthernet0/1
+ description APP-SERVER1-LAN
+ ip address 10.20.20.1 255.255.255.0
+ no shutdown
