@@ -147,7 +147,7 @@ snmp-server location "RCA Lab - Edge Router"
 snmp-server contact "Network Operations"
 ```
 
-- After: [`r1-snmp-fixed.txt`](evidence/configs/r1-snmp-fixed.txt)
+- After: [`r1-snmp-fixed.txt`](evidence/configs/r1-snmp-after.txt)
 
 ```snmp-server community NOC-RO RO
 snmp-server location "RCA Lab - Edge Router"
