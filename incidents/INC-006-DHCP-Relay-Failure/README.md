@@ -230,3 +230,4 @@ After remediation:
 - Compare reachability to the configured helper target vs the intended server
 - Packet captures should confirm both client Discover and successful Offer/ACK after remediation
 - Centralized DHCP depends on correct relay IP address configuration.
+
