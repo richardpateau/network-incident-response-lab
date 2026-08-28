@@ -1,0 +1,16 @@
+interface GigabitEthernet0/0
+ description INSIDE-LAN-SW1
+ ip address 10.10.10.1 255.255.255.0
+ ip nat inside
+ no shutdown
+
+interface GigabitEthernet0/2
+ description ISP-OUTSIDE
+ ip address 192.0.2.1 255.255.255.252
+ ip nat outside
+ no shutdown
+
+ip access-list standard NAT-INSIDE
+ permit 10.10.20.0 0.0.0.3
+
+ip nat inside source list NAT-INSIDE interface GigabitEthernet0/2 overload

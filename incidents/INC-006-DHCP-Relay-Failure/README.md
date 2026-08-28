@@ -65,7 +65,7 @@ The correct DHCP server is `10.20.20.1`.
 
 ### 2. Path Checks
 
-**R1: ping 10.20.20.1***
+**R1: ping 10.20.20.1**
 
 ![Ping to real DHCP server](evidence/screenshots/06-r1-ping-10.20.20.1-success.png)
 
@@ -111,11 +111,11 @@ No valid client lease was created while the helper was wrong.
 
 ![Relay Details](evidence/screenshots/14-wireshark-relay-details.png)
 
-**debug**
+**debug ip dhcp server events**
 
 ![DHCP Debug Events](evidence/screenshots/15-debug-dhcp-server-events.png)
 
-**debug**
+**debug ip dhcp server packet**
 
 ![DHCP Debug Packet](evidence/screenshots/16-debug-dhcp-server-packet.png)
 
@@ -180,7 +180,8 @@ interface GigabitEthernet0/0
  no ip helper-address 10.20.20.11
  ip helper-address 10.20.20.1
  ```
- ## Verification
+ 
+## Verification
 
 After remediation:
 
@@ -189,7 +190,7 @@ After remediation:
 - PC1 could reach `10.20.20.10`
 - Packet capture showed successful DORA
 
-** PC1 obtains a valid IP address via relay agent**
+**PC1 obtains a valid IP address via relay agent**
 
 ![PC1 Got IP](evidence/screenshots/22-pc1-got-dhcp-ip.png)
 
