@@ -87,11 +87,11 @@ Interfaces were up and R1 had a default route toward the ISP. This was not a rou
 
 ![NAT Config](evidence/screenshots/10-r1-show-run-nat.png)
 
-**R1: show run | access-lists**
+**R1: show run | section access-lists**
 
 ![ACL Config](evidence/screenshots/11-r1-show-run-access-list.png)
 
-**R1: show ip access-lists**
+**R1: show ip access-lists NAT-INSIDE**
 
 ![Broken NAT ACL](evidence/screenshots/12-r1-show-access-list-nat-inside-broken.png)
 
@@ -99,7 +99,7 @@ The NAT ACL permitted `10.10.20.0/30` instead of the client LAN `10.10.10.0/24`.
 
 ### 3. NAT Table and Statistics
 
-**R1: show ip nat translation**
+**R1: show ip nat translations**
 
 ![Empty Translations](evidence/screenshots/13-r1-show-ip-nat-translations-empty.png)
 
@@ -250,6 +250,7 @@ After remediation:
 ![NAT Debug](evidence/screenshots/30-debug-ip-nat-after.png)
 
 **ServiceNow resolved**
+
 ![ServiceNow Resolved](evidence/screenshots/31-servicenow-resolved.png)
 
 ---
