@@ -11,7 +11,7 @@
 
 ## ServiceNow Ticket
 
-![ServiceNow Ticket](evidence/screenshots/01-servicenow-ticket_draw_io.png)
+![ServiceNow Ticket](evidence/screenshots/01-servicenow-ticket.png)
 
 **Short Description:**  
 Missing BGP advertisement for 10.10.10.0/24 toward ISP
@@ -20,7 +20,7 @@ Missing BGP advertisement for 10.10.10.0/24 toward ISP
 
 ## Topology
 
-![Topology](topology/topology.png)
+![Topology](topology/topology_draw_io.png)
 
 ---
 
