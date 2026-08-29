@@ -245,7 +245,7 @@ After remediation:
 
 ![After-NAT Reply](evidence/screenshots/29-wireshark-after-nat-reply.png)
 
-**debug ip nat post-remediation**
+**debug ip nat detailed post-remediation**
 
 ![NAT Debug](evidence/screenshots/30-debug-ip-nat-after.png)
 
