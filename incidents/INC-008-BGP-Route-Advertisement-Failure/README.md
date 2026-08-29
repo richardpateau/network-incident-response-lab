@@ -11,7 +11,7 @@
 
 ## ServiceNow Ticket
 
-![ServiceNow Ticket](evidence/screenshots/01-servicenow-ticket.png)
+![ServiceNow Ticket](evidence/screenshots/01-servicenow-ticket_draw_io.png)
 
 **Short Description:**  
 Missing BGP advertisement for 10.10.10.0/24 toward ISP
@@ -81,7 +81,7 @@ The BGP neighbor remained **Established**. This was not an adjacency-down issue.
 
 ![Broken BGP Config](evidence/screenshots/09-r1-show-run-section-bgp-broken.png)
 
-**R1**
+**R1: show ip bgp neighbors 192.0.2.2 advertised-routes** 
 
 ![Advertised Routes Broken](evidence/screenshots/10-r1-advertised-routes-broken.png)
 
@@ -142,7 +142,7 @@ ISP did not have `10.10.10.0/24` via BGP.
 
 ![Routing Insights Before](evidence/screenshots/19-solarwinds-routing-insights-before.png)
 
-**Solarwinds**
+**Solarwinds Routing Neighbors**
 
 ![Routing Neighbors Still Up](evidence/screenshots/20-solarwinds-routing-neighbors-up.png)
 
@@ -213,7 +213,7 @@ After remediation:
 
 ![R1 BGP After](evidence/screenshots/23-r1-show-ip-bgp-after.png)
 
-**R1: show ip post-remediation**
+**R1: show ip bgp neighbors 192.0.2.2 advertised-routes post-remediation**
 
 ![R1 Advertised Routes After](evidence/screenshots/24-r1-advertised-routes-after.png)
 
