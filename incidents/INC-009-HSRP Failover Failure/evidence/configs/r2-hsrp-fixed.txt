@@ -1,8 +1,0 @@
-interface GigabitEthernet0/0
- description USER-LAN-to-SW1
- ip address 10.10.10.3 255.255.255.0
- standby version 2
- standby 1 ip 10.10.10.1
- standby 1 priority 100
- standby 1 preempt
- no shutdown
