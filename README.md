@@ -20,7 +20,7 @@ Tools used across the lab:
 
 This project shows how I approach network troubleshooting in an operations environment, not just that I can build a topology.
 
-The incidents are ordered roughly by increasing complexity — starting with a straightforward Layer 2/3 service failure and building toward multi-stage, protocol-internals problems (OSPF DBD/MTU, BGP prefix advertisement, HSRP redundancy logic) where the fix requires understanding *why* the protocol behaves the way it does, not just which command to run.
+The incidents are ordered roughly by increasing complexity, starting with a straightforward Layer 2/3 service failure and building toward multi-stage, protocol-internals problems (OSPF DBD/MTU, BGP prefix advertisement, HSRP redundancy logic) where the fix requires understanding *why* the protocol behaves the way it does, not just which command to run.
 
 The goal for every case is to produce evidence an employer can review:
 
@@ -55,7 +55,7 @@ Individual incident folders include the topology used for that case.
 | [INC-002](incidents/INC-002-OSPF-Adjacency-Failure/) | OSPF adjacency failure | OSPF states, routing table, packet analysis |
 | [INC-003](incidents/INC-003-ACL-Traffic-Blocked/) | Change blocks more traffic than intended | Extended ACLs, two-stage RCA, security policy |
 | [INC-004](incidents/INC-004-OSPF-MTU-Mismatch/) | OSPF stuck in EXSTART | MTU, DBD exchange, adjacency state machine |
-| [INC-005](incidents/INC-005-SNMP-Monitoring-Failure/) | Device reachable but unmanaged | SNMP, SolarWinds, UDP/161, layered checks |
+| [INC-005](incidents/INC-005-SNMP-Monitoring-Failure/) | Device reachable but unmanaged via SNMP | SNMP, SolarWinds, UDP/161, layered checks |
 | [INC-006](incidents/INC-006-DHCP-Relay-Failure/) | Clients fail to get addresses from a remote server | DHCP relay, helper-address, centralized DHCP |
 | [INC-007](incidents/INC-007-NAT-Translation-Failure/) | Internal works, external fails | NAT/PAT, NAT ACL, translation table |
 | [INC-008](incidents/INC-008-BGP-Route-Advertisement-Failure/) | BGP up, prefix missing | eBGP, network statement, advertised-routes |
@@ -141,4 +141,3 @@ Start with this file, then open any incident README. The strongest cases to samp
 - This is a lab environment, not a production network
 - Faults were injected so the troubleshooting process could be documented end to end
 - Monitoring gaps are included on purpose when SolarWinds or Splunk did not generate useful alerts
-
