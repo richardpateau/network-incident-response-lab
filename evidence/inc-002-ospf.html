@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>INC-002 — OSPF Adjacency Failure</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 35px 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 45px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.evidence {
+    margin-top: 20px;
+}
+
+.evidence img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    margin-top: 15px;
+}
+
+pre {
+    background: #111827;
+    color: #e5e7eb;
+    padding: 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.tag {
+    display: inline-block;
+    background: #e5e7eb;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 16px;
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+.verification {
+    border: 2px solid #d1d5db;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="container">
+
+<h1>INC-002 — OSPF Adjacency Failure</h1>
+
+<p>
+OSPF adjacency troubleshooting, packet analysis,
+configuration verification, and post-remediation validation.
+</p>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- INCIDENT SUMMARY -->
+
+<h2>Incident Summary</h2>
+
+<div class="card">
+
+<p>
+
+A network connectivity failure was investigated after
+clients were unable to reach destinations across the
+OSPF domain.
+
+Initial testing showed failed connectivity between
+network devices and the affected client.
+
+</p>
+
+<p>
+
+The investigation progressed from connectivity testing
+to OSPF neighbor verification, routing-table analysis,
+interface inspection, configuration review, and packet
+analysis.
+
+</p>
+
+</div>
+
+
+<!-- INITIAL SYMPTOM -->
+
+<h2>1. Initial Symptoms</h2>
+
+<div class="card">
+
+<span class="tag">CONNECTIVITY</span>
+
+<h3>Client Ping Failure</h3>
+
+<p>
+
+Initial connectivity testing demonstrated that the
+affected client could not reach the expected destination.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/02-pc1-ping-fail.png"
+alt="PC ping failure">
+
+
+<h3>Router Connectivity Test</h3>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/02a-r1-ping-fail.png"
+alt="Router ping failure">
+
+</div>
+
+
+<!-- OSPF NEIGHBOR -->
+
+<h2>2. OSPF Neighbor Investigation</h2>
+
+<div class="card">
+
+<span class="tag">OSPF</span>
+
+<h3>show ip ospf neighbor</h3>
+
+<pre>
+show ip ospf neighbor
+</pre>
+
+<p>
+
+The OSPF neighbor table was checked to determine whether
+the expected adjacency had reached the FULL state.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/03-r1-show-ip-ospf-neighbor-broken.png"
+alt="Broken OSPF neighbor state">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/03a-r2-show-ip-ospf-neighbor-broken.png"
+alt="R2 broken OSPF neighbor state">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/03b-r3-show-ip-ospf-neighbor-broken.png"
+alt="R3 broken OSPF neighbor state">
+
+</div>
+
+
+<!-- ROUTING -->
+
+<h2>3. Routing Table Investigation</h2>
+
+<div class="card">
+
+<span class="tag">ROUTING</span>
+
+<h3>show ip route ospf</h3>
+
+<pre>
+show ip route ospf
+</pre>
+
+<p>
+
+The OSPF routing table was inspected to determine whether
+routes were being learned through the OSPF process.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/04-r1-show-ip-route-ospf-broken.png"
+alt="Broken OSPF routing table">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/04a-r2-show-ip-route-ospf-broken.png"
+alt="R2 broken OSPF routing table">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/04b-r3-show-ip-route-ospf-broken.png"
+alt="R3 broken OSPF routing table">
+
+</div>
+
+
+<!-- INTERFACE -->
+
+<h2>4. OSPF Interface Investigation</h2>
+
+<div class="card">
+
+<span class="tag">INTERFACE</span>
+
+<h3>show ip ospf interface brief</h3>
+
+<pre>
+show ip ospf interface brief
+</pre>
+
+<p>
+
+OSPF-enabled interfaces were reviewed to verify which
+interfaces were participating in the routing process.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/05-r1-show-ip-ospf-interface-brief.png"
+alt="R1 OSPF interface information">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/05a-r2-show-ip-ospf-interface-brief.png"
+alt="R2 OSPF interface information">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/05b-r3-show-ip-ospf-interface-brief.png"
+alt="R3 OSPF interface information">
+
+</div>
+
+
+<!-- CONFIG -->
+
+<h2>5. Configuration Investigation</h2>
+
+<div class="card">
+
+<span class="tag">CONFIGURATION</span>
+
+<h3>show running-config</h3>
+
+<pre>
+show running-config
+</pre>
+
+<p>
+
+The active OSPF configuration was reviewed to compare
+the affected routers and identify the configuration
+responsible for the adjacency failure.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/06-r1-show-running-config-ospf.png"
+alt="R1 OSPF running configuration">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/06a-r2-show-running-config-ospf.png"
+alt="R2 OSPF running configuration">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/06b-r3-show-running-config-ospf.png"
+alt="R3 OSPF running configuration">
+
+</div>
+
+
+<!-- PACKET ANALYSIS -->
+
+<h2>6. Packet Analysis</h2>
+
+<div class="card">
+
+<span class="tag">TCPDUMP / WIRESHARK</span>
+
+<h3>OSPF Packet Capture</h3>
+
+<p>
+
+Packet capture analysis was used to determine whether
+OSPF control-plane traffic was being exchanged and to
+correlate packet behavior with the router CLI evidence.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/07-tcp-dump.png"
+alt="tcpdump OSPF evidence">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/08-wireshark-ospf-hellos-only.png"
+alt="Wireshark OSPF Hello packets">
+
+<p>
+
+The broken capture can also be examined directly:
+
+</p>
+
+<a
+class="button"
+href="https://github.com/richardpateau/network-incident-response-lab/blob/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/pcaps/ospf-broken.pcap"
+target="_blank">
+
+View Broken OSPF PCAP →
+
+</a>
+
+<a
+class="button"
+href="https://github.com/richardpateau/network-incident-response-lab/blob/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/pcaps/02-ospf-working.pcap"
+target="_blank">
+
+View Working OSPF PCAP →
+
+</a>
+
+</div>
+
+
+<!-- VERIFICATION -->
+
+<h2>7. Post-Remediation Verification</h2>
+
+<div class="card verification">
+
+<span class="tag">VERIFICATION</span>
+
+<h3>OSPF Adjacency Restored</h3>
+
+<p>
+
+After remediation, the OSPF neighbor relationship was
+rechecked to verify that the adjacency successfully
+reached the expected operational state.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/11-r1-show-ip-ospf-neighbor-fixed.png"
+alt="R1 OSPF adjacency restored">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/11a-r2-show-ip-ospf-neighbor-fixed.png"
+alt="R2 OSPF adjacency restored">
+
+
+<h3>OSPF Routes Restored</h3>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/12-r1-show-ip-route-ospf-fixed.png"
+alt="OSPF routes restored">
+
+
+<h3>Routing Table Verification</h3>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/13-r1-show-ip-route-fixed.png"
+alt="Restored routing table">
+
+
+<h3>Connectivity Restored</h3>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/16-r1-post-ping-after-remediation.png"
+alt="Router connectivity restored">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/16a-pc-ping-after-remediation.png"
+alt="PC connectivity restored">
+
+</div>
+
+
+<!-- POST REMEDIATION PACKETS -->
+
+<h2>8. Post-Remediation OSPF Packet Exchange</h2>
+
+<div class="card">
+
+<span class="tag">PACKET VERIFICATION</span>
+
+<p>
+
+The post-remediation capture demonstrates the OSPF
+control-plane exchange after the configuration was corrected.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14-wireshark-post-remediation.png"
+alt="Post-remediation OSPF packets">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14a-wireshark-hello-details.png"
+alt="OSPF Hello details">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14b-wireshark-dbd-details.png"
+alt="OSPF Database Description details">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14c-wireshark-lsr-details.png"
+alt="OSPF Link State Request details">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14d-wireshark-lsu-details.png"
+alt="OSPF Link State Update details">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/14e-wireshark-ls-ack-details.png"
+alt="OSPF Link State Acknowledgment details">
+
+</div>
+
+
+<!-- MONITORING -->
+
+<h2>9. Monitoring Evidence</h2>
+
+<div class="card">
+
+<span class="tag">MONITORING</span>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/09-splunk.png"
+alt="Splunk monitoring evidence">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/10-solarwinds.png"
+alt="SolarWinds monitoring evidence">
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/15-splunk-after-remediation.png"
+alt="Splunk post-remediation evidence">
+
+</div>
+
+
+<!-- TICKET -->
+
+<h2>10. Incident Closure</h2>
+
+<div class="card">
+
+<p>
+
+The incident was closed after OSPF adjacency, routing,
+packet exchange, and end-to-end connectivity were
+successfully verified.
+
+</p>
+
+<img
+src="https://raw.githubusercontent.com/richardpateau/network-incident-response-lab/main/incidents/INC-002-OSPF-Adjacency-Failure/evidence/screenshots/17-service-now-resolved.png"
+alt="Resolved ServiceNow-style incident ticket">
+
+</div>
+
+
+<a
+class="button"
+href="../projects/network-incident-response.html">
+
+← Back to Incident Response Lab
+
+</a>
+
+</div>
+
+</body>
+
+</html>
